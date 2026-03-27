@@ -20,7 +20,7 @@ const myUserId = LS.get('myUserId', null) || (() => {
 
 // ========== UI文言一括管理 (ここを書き換えるだけでサイトの文字が変わります) ==========
 const UI_TEXT = {
-  APP_TITLE: 'SF6 Combo board',
+  APP_TITLE: 'SF6 Combo Board',
   SEARCH_TAB: '検索',
   SAVE_TAB: '保存済み',
   POST_BTN: '＋ 投稿',
