@@ -20,7 +20,7 @@ const myUserId = LS.get('myUserId', null) || (() => {
 
 // ========== UI文言一括管理 (ここを書き換えるだけでサイトの文字が変わります) ==========
 const UI_TEXT = {
-  APP_TITLE: 'SF6 Combo Lab',
+  APP_TITLE: 'SF6 Combo board',
   SEARCH_TAB: '検索',
   SAVE_TAB: '保存済み',
   POST_BTN: '＋ 投稿',
@@ -255,13 +255,13 @@ function App() {
     setFRecipe(parts.join(' > '))
     triggerGlow()
   }
-  
+
   // レシピ内の技名をコマンドに変換（またはその逆）
   const formatRecipe = useCallback((recipe, char, mode) => {
     if (!recipe || !char) return recipe
     const moves = characterMoves[char] || []
     let formatted = convertRecipeNotation(recipe) // まず強度表記などを変換
-    
+
     // 単純な置換だと「波動拳」が「↓↘→P」に含まれる場合に壊れる可能性があるため、
     // 長い名前から順に置換するか、区切り文字で分割して処理するのが安全
     const sortedMoves = [...moves].sort((a, b) => b.name.length - a.name.length)
@@ -445,20 +445,20 @@ function App() {
     const dbSits = combos.map(c => c.situation).filter(Boolean)
     return [...new Set([...situations, ...dbSits])]
   }, [combos])
-  
+
   // === タグサジェスト機能 ===
   const currentTagPart = fTags.split('、').pop()?.trim() || ''
   const tagSuggestions = useMemo(() => {
     if (!isFormOpen) return []
     const alreadySelected = fTags.split('、').map(t => t.trim()).filter(Boolean)
-    
+
     // 未入力時は、最近使われたタグを「おすすめ」として表示
     if (!currentTagPart) {
       return allTags.filter(t => !alreadySelected.includes(t)).slice(0, 8)
     }
 
-    return allTags.filter(t => 
-      t.toLowerCase().includes(currentTagPart.toLowerCase()) && 
+    return allTags.filter(t =>
+      t.toLowerCase().includes(currentTagPart.toLowerCase()) &&
       !alreadySelected.includes(t)
     ).slice(0, 8)
   }, [fTags, allTags, isFormOpen, currentTagPart])
@@ -788,7 +788,7 @@ function App() {
               {/* ===== コンボビルダー ===== */}
               <div className="form-group recipe-group">
                 <label>コンボレシピ (必須)</label>
-                
+
                 <div className="builder-panel">
                   <p className="builder-title">🕹 通常技</p>
                   <div className="builder-main">
